@@ -1,4 +1,3 @@
-dictionary = ['процент', 'процента', 'процентов']
 percent_value_list = []
 idx = 0
 
@@ -15,10 +14,10 @@ for percent_value in percent_value_list:
         value_mod *= -1
 
     if value_mod % 10 == 0 or value_mod % 10 > 4 or 11 <= value_mod % 100 <= 14:
-        print(percent_value, dictionary[2])
+        print(percent_value, 'процентов')
 
     elif value_mod % 10 == 1:
-        print(percent_value, dictionary[0])
+        print(percent_value, "процент")
 
     else:
-        print(percent_value, dictionary[1])
+        print(percent_value, 'процента')

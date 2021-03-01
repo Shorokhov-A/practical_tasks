@@ -1,7 +1,7 @@
 durations = [53, 153, 4153, 400153]
 sec_in_minute = 60
-sec_in_hour = 3600
-sec_in_day = 86400
+sec_in_hour = sec_in_minute * 60
+sec_in_day = sec_in_hour * 24
 
 for duration in durations:
     duration_module = duration

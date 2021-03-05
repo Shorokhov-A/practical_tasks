@@ -31,7 +31,7 @@ while True:
 
     idx += 1
 
-    if idx is len(example_list) - 1:
+    if idx == len(example_list) - 1:
 
         break
 

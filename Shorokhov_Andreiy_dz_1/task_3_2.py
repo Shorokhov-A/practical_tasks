@@ -12,11 +12,8 @@ WORDS = {
 
 
 def num_translate(text):
-
     if text.istitle():
-
         return WORDS.get(text.lower()).capitalize()
-
     return WORDS.get(text)
 
 

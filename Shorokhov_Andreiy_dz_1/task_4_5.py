@@ -11,7 +11,8 @@ def currency_rate(*args):
     encodings = utils.get_encoding_from_headers(response.headers)
     content = response.content.decode(encoding=encodings)
     current_date = content.split('" name')[0].split('<ValCurs Date="')[1].split('.')
-    current_date = date(int(current_date[2]), int(current_date[1]), int(current_date[0]))
+    current_date.reverse()
+    current_date = date(*map(int, current_date))
     for el in content.split('<CharCode>')[1:]:
         inner_data = el.split('</Value>')[0]
         currency_code = inner_data.split('</CharCode>')[0]

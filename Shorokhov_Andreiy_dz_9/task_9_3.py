@@ -13,8 +13,6 @@ class Worker:
 
 
 class Position(Worker):
-    pass
-
     def get_full_name(self):
         return f'{self.name} {self.surname}'
 

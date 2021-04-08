@@ -7,8 +7,7 @@ class Storage:
     def add_prod(self, item, amount=1):
         eq_count = {}
         self.eq_name_amount.setdefault(item.eq_name, 0)
-        for _ in range(amount):
-            self.eq_name_amount[item.eq_name] += 1
+        self.eq_name_amount[item.eq_name] = self.eq_name_amount[item.eq_name] + amount
         eq_count[item.eq_name] = self.eq_name_amount[item.eq_name]
         self.storage_db.setdefault(item.eq_class, {}).\
             setdefault(item.eq_type, {}).update(eq_count)
@@ -18,10 +17,9 @@ class Storage:
         eq_to_send = {}
         eq_count = {}
         eq_to_send.setdefault(item.eq_name, 0)
-        for _ in range(amount):
-            self.item_amount_check(item.eq_name)
-            self.eq_name_amount[item.eq_name] -= 1
-            eq_to_send[item.eq_name] += 1
+        self.item_amount_check(item.eq_name, amount)
+        self.eq_name_amount[item.eq_name] = self.eq_name_amount[item.eq_name] - amount
+        eq_to_send[item.eq_name] = eq_to_send[item.eq_name] + amount
         eq_count[item.eq_name] = self.eq_name_amount[item.eq_name]
         self.storage_db.setdefault(item.eq_class, {}). \
             setdefault(item.eq_type, {}).update(eq_count)
@@ -34,8 +32,8 @@ class Storage:
     def to_send(self):
         return self.send_prods
 
-    def item_amount_check(self, item):
-        if self.eq_name_amount[item] == 0:
+    def item_amount_check(self, item, value):
+        if self.eq_name_amount[item] < value:
             raise ValueError(f'{item} amount out of range.')
 
     def __str__(self):
